@@ -3,6 +3,7 @@
 
 import type { Metadata } from 'next';
 import { Jost, Josefin_Sans } from 'next/font/google';
+import GoogleAnalytics from '@/components/GoogleAnalytics'; 
 import './globals.css';
 
 // Font configuration (no changes here)
@@ -36,7 +37,7 @@ export const metadata: Metadata = {
     description: 'Nourish your scalp and restore your hair\'s vitality with our all-natural, organic hair oil.',
     images: [
       {
-        url: 'https://www.praghaorganics.com/og-image.png', // You'll need to create and place this image in your /public folder
+        url: 'https://www.pragha.in/og-image.png', // You'll need to create and place this image in your /public folder
         width: 1200,
         height: 630,
         alt: 'Pragha Organics Hair Oil Bottle with Natural Ingredients',
@@ -49,7 +50,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Pragha Organics | Natural Hair Oil for Growth & Dandruff Control',
     description: 'Experience nature\'s solution for beautiful, healthy hair with Pragha Organics.',
-    images: ['https://www.praghaorganics.com/twitter-image.png'], // You'll need to create and place this image in your /public folder
+    images: ['https://www.pragha.in/twitter-image.png'], // You'll need to create and place this image in your /public folder
   },
 };
 
@@ -62,6 +63,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${josefin.variable} ${jost.variable} font-sans`}>
+        <GoogleAnalytics /> 
         {children}
       </body>
     </html>

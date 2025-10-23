@@ -2,55 +2,77 @@
 // This file has been updated with comprehensive meta tags.
 
 import type { Metadata } from 'next';
-import { Jost, Josefin_Sans } from 'next/font/google';
-import GoogleAnalytics from '@/components/GoogleAnalytics'; 
+import GoogleAnalytics from '@/components/GoogleAnalytics';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import './globals.css';
 
-// Font configuration (no changes here)
-const josefin = Josefin_Sans({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-josefin-sans',
-  weight: ['400', '500', '700'],
-});
-
-const jost = Jost({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-jost',
-  weight: ['700', '800', '900'],
-});
-
 // --- SEO METADATA ---
-// This is the new, comprehensive metadata object.
+// Enhanced meta configuration for search, social, and sharing.
 export const metadata: Metadata = {
-  // --- Primary Meta Tags ---
-  title: 'Pragha Organics | Natural Hair Oil for Growth & Dandruff Control',
-  description: 'Discover Pragha Organics, a pure, powerful blend of botanical ingredients designed to promote healthy hair growth, eliminate dandruff, and strengthen roots. Experience nature\'s solution for beautiful hair.',
-  keywords: ['organic hair oil', 'hair growth oil', 'dandruff control', 'natural hair care', 'pragha organics', 'herbal hair oil', 'ayurvedic hair oil', 'hair fall solution'],
-  
-  // --- Open Graph / Facebook Meta Tags ---
+  metadataBase: new URL('https://www.pragha.in'),
+  title: {
+    default: 'Pragha | Natural Hair Oil for Growth & Dandruff Control',
+    template: '%s | Pragha',
+  },
+  description:
+    "Discover Pragha's heritage-inspired hair oils that nourish roots, calm dandruff, and restore luxurious shine using freshly infused botanicals.",
+  keywords: [
+    'Pragha hair oil',
+    'natural hair oil India',
+    'herbal hair growth oil',
+    'poduthalai oil',
+    'dandruff control remedy',
+    'ayurvedic hair care',
+    'botanical scalp treatment',
+  ],
+  category: 'beauty',
+  authors: [{ name: 'Pragha Organics Team', url: 'https://www.pragha.in' }],
+  creator: 'Pragha Organics',
+  publisher: 'Pragha Organics',
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     type: 'website',
-    url: 'https://www.pragha.in', // Replace with your actual domain later
-    title: 'Pragha Organics | Natural Hair Oil for Growth & Dandruff Control',
-    description: 'Nourish your scalp and restore your hair\'s vitality with our all-natural, organic hair oil.',
+    url: '/',
+    siteName: 'Pragha',
+    title: 'Pragha | Natural Hair Oil for Growth & Dandruff Control',
+    description:
+      'Nourish your scalp with Pragha—heritage hair oils crafted from hibiscus, amla, and poduthalai for growth, shine, and a flake-free finish.',
+    locale: 'en_IN',
     images: [
       {
-        url: 'https://www.pragha.in/og-image.png', // You'll need to create and place this image in your /public folder
+        url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Pragha Organics Hair Oil Bottle with Natural Ingredients',
+        alt: 'Pragha hair oil bottle surrounded by botanical ingredients',
       },
     ],
   },
-
-  // --- Twitter Card Meta Tags ---
   twitter: {
     card: 'summary_large_image',
-    title: 'Pragha Organics | Natural Hair Oil for Growth & Dandruff Control',
-    description: 'Experience nature\'s solution for beautiful, healthy hair with Pragha Organics.',
-    images: ['https://www.pragha.in/twitter-image.png'], // You'll need to create and place this image in your /public folder
+    title: 'Pragha | Natural Hair Oil for Growth & Dandruff Control',
+    description:
+      'Experience naturally stronger, shinier hair with Pragha’s botanically infused oils for growth and dandruff relief.',
+    creator: '@PraghaOrganics',
+    site: '@PraghaOrganics',
+    images: ['/twitter-image.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-snippet': -1,
+      'max-image-preview': 'large',
+      'max-video-preview': -1,
+    },
+  },
+  icons: {
+    icon: '/favicon.png',
+    apple: '/favicon.png',
   },
 };
 
@@ -62,9 +84,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${josefin.variable} ${jost.variable} font-sans`}>
-        <GoogleAnalytics /> 
-        {children}
+      <body className="font-sans bg-surface text-brand-primary antialiased">
+        <GoogleAnalytics />
+        <Header />
+        <main className="min-h-screen w-full">
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );

@@ -9,17 +9,19 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-josefin-sans)'],
-        heading: ['var(--font-jost)'],
+        sans: ['"Inter"', 'system-ui', 'Avenir', 'Helvetica', 'Arial', 'sans-serif'],
+        heading: ['"Playfair Display"', '"Georgia"', 'serif'],
+        testimonial: ['"Cormorant Garamond"', '"Times New Roman"', 'serif'],
       },
       colors: {
-        green: {
-          100: '#f0fdf4',
-          200: '#dcfce7',
-          600: '#16a34a',
-          700: '#15803d',
-        }
-      }
+        brand: {
+          primary: '#0F3D3E',
+          secondary: '#FFBD33',
+          accent: '#FF6F61',
+          teal: '#008080',
+        },
+        surface: '#FAFAFA',
+      },
     },
   },
   plugins: [require('@tailwindcss/forms')],

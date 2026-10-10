@@ -30,8 +30,8 @@ const products: Product[] = [
     highlights: ['Supports thicker, denser hair over time', 'Deeply nourishes scalp and roots', 'Infused over 72 hours for potent freshness'],
     image: '/pragha_herbal_hairoil.png',
     sizes: [
-      { volume: 'Pragha Herbal Hair Oil - 200 ml', regularPrice: 499, offerPrice: 439 },
-      { volume: 'Pragha Herbal Hair Oil - 100 ml', regularPrice: 279, offerPrice: 249 },
+      { volume: 'Pragha Herbal Hair Oil - 200 ml', regularPrice: 499, offerPrice: 399 },
+      { volume: 'Pragha Herbal Hair Oil - 100 ml', regularPrice: 279, offerPrice: 222 },
     ],
     offerClass: 'text-brand-primary',
     titleClass: 'text-brand-primary',
@@ -43,10 +43,7 @@ const products: Product[] = [
       'Formulated with poduthalai, neem, and peppermint to cool irritation, balance sebum, and keep dandruff in check.',
     highlights: ['Targets flakes and itchy scalp fast', 'Lightweight finish ideal for regular use', 'Herbal actives calm and purify the scalp'],
     image: '/pragha_poduthalai_hairoil.png',
-    sizes: [
-      { volume: 'Pragha Poduthalai Hair Oil - 200 ml', regularPrice: 449, offerPrice: 399 },
-      { volume: 'Pragha Poduthalai Hair Oil - 100 ml', regularPrice: 249, offerPrice: 220 },
-    ],
+    sizes: [{ volume: 'Pragha Poduthalai Hair Oil - 100 ml', regularPrice: 249, offerPrice: 220 }],
     offerClass: 'text-amber-700',
     titleClass: 'text-amber-800',
     ctaClass: 'bg-amber-700 hover:bg-amber-800 text-white',
@@ -172,22 +169,33 @@ const ProductShowcase = () => {
                     ))}
                   </ul>
                   <div className="mt-4 space-y-2 text-sm text-brand-primary/75">
-                    {product.sizes.map((size) => (
-                      <div
-                        key={size.volume}
-                        className="flex items-baseline justify-between rounded-xl bg-white/90 px-3 py-3 shadow-sm"
-                      >
-                        <span className="font-semibold text-brand-primary">{size.volume}</span>
-                        <div className="flex items-baseline gap-2">
-                          <span className="text-xs text-brand-primary/50 line-through sm:text-sm">
-                            ₹{size.regularPrice}
-                          </span>
-                          <span className={`text-lg font-semibold sm:text-xl ${product.offerClass}`}>
-                            ₹{size.offerPrice}
-                          </span>
+                    {product.sizes.map((size) => {
+                      const isHerbal200mlOffer =
+                        product.name === 'Herbal Hair Oil' && size.volume.includes('200 ml');
+
+                      return (
+                        <div key={size.volume} className="space-y-2">
+                          {isHerbal200mlOffer && (
+                            <div className="flex justify-end">
+                              <span className="inline-flex animate-pulse items-center rounded-full bg-red-500 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-white shadow-md shadow-red-500/30">
+                                Limited Offer
+                              </span>
+                            </div>
+                          )}
+                          <div className="flex items-baseline justify-between rounded-xl bg-white/90 px-3 py-3 shadow-sm">
+                            <span className="font-semibold text-brand-primary">{size.volume}</span>
+                            <div className="flex items-baseline gap-2">
+                              <span className="text-xs text-brand-primary/50 line-through sm:text-sm">
+                                ₹{size.regularPrice}
+                              </span>
+                              <span className={`text-lg font-semibold sm:text-xl ${product.offerClass}`}>
+                                ₹{size.offerPrice}
+                              </span>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
 
